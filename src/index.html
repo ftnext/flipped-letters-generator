@@ -42,7 +42,16 @@
   </div>
 
   <script>
+    function initializeWithParameters(inputElement) {
+      const initialParams = new URLSearchParams(location.search);
+      const initialSentence = initialParams.get("sentenceInput");
+      if (initialSentence) inputElement.value = initialSentence;
+
+      if (location.search) history.replaceState({}, document.title, "");
+    }
+
     const sentenceInput = document.getElementById("sentenceInput");
+    initializeWithParameters(sentenceInput);
 
     const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
