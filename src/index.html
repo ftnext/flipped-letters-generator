@@ -20,9 +20,9 @@
   />
 </head>
 <body>
+  <h1>縦書き鏡文字ジェネレーター</h1>
   <div>
     <input id="sentenceInput" />
-    <button id="drawCanvas">鏡文字にする</button>
   </div>
   <hr />
   <div>
@@ -43,7 +43,6 @@
 
   <script>
     const sentenceInput = document.getElementById("sentenceInput");
-    const drawButton = document.getElementById("drawCanvas");
 
     const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
@@ -137,7 +136,7 @@
         twitterLink.href = `https://twitter.com/intent/tweet?${tweetParams}`;
     }
 
-    drawButton.onclick = () => {
+    function updateCanvas() {
       clearCanvas();
 
       const sentence = sentenceInput.value;
@@ -145,7 +144,9 @@
 
       drawTextInMirror(ctx, sentence, fontSize);
       setupTweetLink(sentence);
-    };
+    }
+
+    sentenceInput.addEventListener("input", updateCanvas);
 
     document
       .querySelector("#copyButton")
