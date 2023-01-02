@@ -4,6 +4,12 @@
     縦書き鏡文字ジェネレーター | 映画『かがみの孤城』応援プロジェクト
     #かがみの孤城
   </title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+    crossorigin="anonymous"
+  />
   <style type="text/css">
     canvas {
       border: 1px solid #888;
@@ -30,13 +36,13 @@
   </div>
   <hr />
   <div>
-    <button id="copyButton">クリップボードにコピー</button>
+    <button id="copyButton" class="btn btn-outline-secondary">クリップボードにコピー</button>
     <br />
     <br />
-    <button id="downloadButton">ダウンロード</button>
+    <button id="downloadButton" class="btn btn-outline-success">ダウンロード</button>
     <br />
     <br />
-    <a id="twitterLink" target="_blank" rel="noopener noreferrer">
+    <a role="button" id="twitterLink" class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">
       鏡文字をTweetする
     </a>
   </div>
