@@ -16,6 +16,8 @@
   />
   <style type="text/css">
     canvas {
+      max-width: 100%;
+      max-height: 100%;
       border: 1px solid #888;
     }
   </style>
@@ -45,8 +47,11 @@
   <main>
     <div class="container">
       <div class="row">
-        <div class="col-8">
-          <canvas id="canvas" width="200" height="400"></canvas>
+        <div
+          class="col-8 d-flex justify-content-center"
+          style="max-height: 85vh"
+        >
+          <canvas id="canvas" width="720" height="1280"></canvas>
         </div>
         <div class="col-4">
           <input
@@ -191,7 +196,7 @@
       clearCanvas();
 
       const sentence = sentenceInput.value;
-      const fontSize = 40;
+      const fontSize = 100;
 
       drawTextInMirror(ctx, sentence, fontSize);
       setupTweetLink(sentence);
