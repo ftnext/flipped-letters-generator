@@ -27,24 +27,32 @@
 </head>
 <body>
   <h1>縦書き鏡文字ジェネレーター</h1>
-  <div>
-    <input id="sentenceInput" value="かがみの孤城はいいぞ" />
-  </div>
-  <hr />
-  <div>
-    <canvas id="canvas" width="200" height="400"></canvas>
-  </div>
-  <hr />
-  <div>
-    <button id="copyButton" class="btn btn-outline-secondary">クリップボードにコピー</button>
-    <br />
-    <br />
-    <button id="downloadButton" class="btn btn-outline-success">ダウンロード</button>
-    <br />
-    <br />
-    <a role="button" id="twitterLink" class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">
-      鏡文字をTweetする
-    </a>
+  <div class="row">
+    <div class="col-8">
+      <canvas id="canvas" width="200" height="400"></canvas>
+    </div>
+    <div class="col-4">
+      <input id="sentenceInput" value="かがみの孤城はいいぞ" />
+      <button id="copyButton" class="btn btn-outline-secondary">
+        クリップボードにコピー
+      </button>
+      <br />
+      <br />
+      <button id="downloadButton" class="btn btn-outline-success">
+        ダウンロード
+      </button>
+      <br />
+      <br />
+      <a
+        role="button"
+        id="twitterLink"
+        class="btn btn-primary btn-lg"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        鏡文字をTweetする
+      </a>
+    </div>
   </div>
 
   <script>
