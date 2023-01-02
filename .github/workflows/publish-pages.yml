@@ -1,0 +1,23 @@
+name: Publish on GitHub Pages
+
+on:
+  push:
+    branches:
+      - "main"
+    paths:
+      - src/**
+      - .github/workflows/publish-pages.yml
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Copy static HTML
+        run: cp -R src tmp
+      - name: Push on GitHub Pages branch
+        uses: ftnext/action-push-ghpages@v1.0.0
+        with:
+          build_dir: tmp
+          github_token: ${{ secrets.GITHUB_TOKEN }}
