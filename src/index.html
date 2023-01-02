@@ -15,6 +15,12 @@
   <div>
     <canvas id="canvas" width="200" height="400"></canvas>
   </div>
+  <hr />
+  <div>
+    <a id="twitterLink" target="_blank" rel="noopener noreferrer">
+      鏡文字をTweetする
+    </a>
+  </div>
 
   <script>
     const sentenceInput = document.getElementById("sentenceInput");
@@ -91,6 +97,27 @@
       );
     }
 
+    function buildTwitterIntentParams(text) {
+      const tweetParams = new URLSearchParams();
+      tweetParams.append(
+        "url",
+        "https://ftnext.github.io/flipped-letters-generator/"
+      );
+      tweetParams.append(
+        "text",
+        `[保存した画像またはクリップボードにコピーした画像を貼り付けてください]「${text}」を鏡文字にしました！`
+      );
+      tweetParams.append("hashtags", "かがみの孤城");
+      return tweetParams;
+    }
+
+    function setupTweetLink(text) {
+      const tweetParams = buildTwitterIntentParams(text);
+      const twitterLink = document.querySelector("#twitterLink");
+      if (twitterLink)
+        twitterLink.href = `https://twitter.com/intent/tweet?${tweetParams}`;
+    }
+
     drawButton.onclick = () => {
       clearCanvas();
 
@@ -98,6 +125,7 @@
       const fontSize = 40;
 
       drawTextInMirror(ctx, sentence, fontSize);
+      setupTweetLink(sentence);
     };
   </script>
 </body>
