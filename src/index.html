@@ -124,11 +124,18 @@
       );
     }
 
+    function buildGeneratorQueryParams(text) {
+      const generatorParams = new URLSearchParams();
+      generatorParams.append("sentenceInput", text);
+      return generatorParams;
+    }
+
     function buildTwitterIntentParams(text) {
       const tweetParams = new URLSearchParams();
+      const generatorParams = buildGeneratorQueryParams(text);
       tweetParams.append(
         "url",
-        "https://ftnext.github.io/flipped-letters-generator/"
+        `https://ftnext.github.io/flipped-letters-generator/?${generatorParams}`
       );
       tweetParams.append(
         "text",
