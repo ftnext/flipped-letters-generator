@@ -30,6 +30,9 @@
   </div>
   <hr />
   <div>
+    <button id="downloadButton">ダウンロード</button>
+    <br />
+    <br />
     <a id="twitterLink" target="_blank" rel="noopener noreferrer">
       鏡文字をTweetする
     </a>
@@ -140,5 +143,12 @@
       drawTextInMirror(ctx, sentence, fontSize);
       setupTweetLink(sentence);
     };
+
+    document.querySelector("#downloadButton")?.addEventListener("click", () => {
+      const link = document.createElement("a");
+      link.download = `flipped_letters_${Date.now()}.png`;
+      link.href = canvas.toDataURL();
+      link.click();
+    });
   </script>
 </body>
