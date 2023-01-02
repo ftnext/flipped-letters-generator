@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<head>
+  <style type="text/css">
+    canvas {
+      border: 1px solid #888;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <input id="sentenceInput" />
+    <button id="drawCanvas">鏡文字にする</button>
+  </div>
+  <hr />
+  <div>
+    <canvas id="canvas" width="200" height="400"></canvas>
+  </div>
+
+  <script>
+    const sentenceInput = document.getElementById("sentenceInput");
+    const drawButton = document.getElementById("drawCanvas");
+
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+
+    function clearCanvas() {
+      ctx.fillStyle = "white";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function calculateXCenterLeftBottomInMirror(canvasWidth, charHeight) {
+      const centerX = canvasWidth / 2;
+      const startXRightBottom = centerX + charHeight / 2;
+      const mirrorStartXBottom = -startXRightBottom;
+      return mirrorStartXBottom;
+    }
+
+    function calculateYCenterLeftBottom(
+      canvasHeight,
+      sentenceHeight,
+      charHeight
+    ) {
+      const upperBlankHeight = (canvasHeight - sentenceHeight) / 2;
+      return upperBlankHeight + charHeight;
+    }
+
+    function fillTextVertically(
+      ctx,
+      text,
+      startXLeftBottom,
+      startYLeftBottom,
+      charHeight
+    ) {
+      [...text].forEach((char, i) => {
+        const charStartYLeftBottom = startYLeftBottom + charHeight * i;
+        ctx.fillText(char, startXLeftBottom, charStartYLeftBottom);
+      });
+    }
+
+    function drawTextInMirror(ctx, text, fontSize) {
+      ctx.scale(-1, 1);
+
+      drawText(ctx, text, fontSize);
+
+      ctx.scale(-1, 1);
+    }
+
+    function drawText(ctx, text, fontSize) {
+      ctx.font = `${fontSize}px serif`;
+      ctx.fillStyle = "#666";
+
+      const charHeight = ctx.measureText("あ").width;
+      const textWidth = ctx.measureText(text).width;
+
+      const startXLeftBottom = calculateXCenterLeftBottomInMirror(
+        canvas.width,
+        charHeight
+      );
+      const startYLeftBottom = calculateYCenterLeftBottom(
+        canvas.height,
+        textWidth,
+        charHeight
+      );
+
+      fillTextVertically(
+        ctx,
+        text,
+        startXLeftBottom,
+        startYLeftBottom,
+        charHeight
+      );
+    }
+
+    drawButton.onclick = () => {
+      clearCanvas();
+
+      const sentence = sentenceInput.value;
+      const fontSize = 40;
+
+      drawTextInMirror(ctx, sentence, fontSize);
+    };
+  </script>
+</body>
