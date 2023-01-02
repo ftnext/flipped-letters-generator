@@ -22,7 +22,7 @@
 <body>
   <h1>縦書き鏡文字ジェネレーター</h1>
   <div>
-    <input id="sentenceInput" />
+    <input id="sentenceInput" value="かがみの孤城はいいぞ" />
   </div>
   <hr />
   <div>
@@ -172,5 +172,7 @@
       link.href = canvas.toDataURL();
       link.click();
     });
+
+    updateCanvas();
   </script>
 </body>
