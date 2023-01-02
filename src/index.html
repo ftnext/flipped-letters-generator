@@ -30,6 +30,9 @@
   </div>
   <hr />
   <div>
+    <button id="copyButton">クリップボードにコピー</button>
+    <br />
+    <br />
     <button id="downloadButton">ダウンロード</button>
     <br />
     <br />
@@ -143,6 +146,24 @@
       drawTextInMirror(ctx, sentence, fontSize);
       setupTweetLink(sentence);
     };
+
+    document
+      .querySelector("#copyButton")
+      ?.addEventListener("click", (event) => {
+        canvas.toBlob((blob) => {
+          if (!blob) return;
+          const item = new ClipboardItem({ "image/png": blob });
+          navigator.clipboard.write([item]).then(() => {
+            if (!event.target) return;
+            const target = event.target;
+            const original = target.innerHTML;
+            target.innerHTML = "コピーされました";
+            window.setTimeout(() => {
+              target.innerHTML = original;
+            }, 850);
+          });
+        });
+      });
 
     document.querySelector("#downloadButton")?.addEventListener("click", () => {
       const link = document.createElement("a");
